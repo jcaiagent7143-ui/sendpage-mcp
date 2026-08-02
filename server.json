@@ -1,0 +1,25 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.sendpageapp/sendpage",
+  "description": "Publish an HTML document as a shareable link the recipient can open in one tap, with PDF, image and Word export. For proposals, reports, invoices and dashboards that break when sent as a file.",
+  "version": "1.0.0",
+  "websiteUrl": "https://sendpageapp.com/docs/mcp",
+  "repository": {
+    "url": "https://github.com/jcaiagent7143-ui/sendpage-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://sendpageapp.com/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer token. Generate a free key at https://sendpageapp.com/docs/mcp — no signup required. Format: 'Bearer sp_live_...'",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
