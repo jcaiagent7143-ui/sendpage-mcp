@@ -1,7 +1,7 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.sendpageapp/sendpage",
-  "description": "Publish an HTML document as a shareable link the recipient can open in one tap, with PDF, image and Word export. For proposals, reports, invoices and dashboards that break when sent as a file.",
+  "description": "Publish an HTML document as a link anyone can open in one tap, plus PDF, image and Word export.",
   "version": "1.0.0",
   "websiteUrl": "https://sendpageapp.com/docs/mcp",
   "repository": {
