@@ -98,3 +98,25 @@ that is a missing credential, not a broken server.
 
 This repository holds the connection metadata and the Skill. For problems with
 the server itself, open an issue here.
+
+---
+
+## Use it in DeepSeek Harness (dsh)
+
+This repo is also a DeepSeek Harness **bundle** — install it and SendPage's tools
+mount straight into dsh, with no manual MCP config:
+
+```sh
+dsh plugin --profile web add https://github.com/jcaiagent7143-ui/sendpage-mcp
+```
+
+Then set your free key (get one at https://sendpageapp.com/docs/mcp) so publishing
+and exporting work — in the environment, or in `$DSH_HOME/.credentials.yaml`:
+
+```yaml
+SENDPAGE_API_KEY: <your key>
+```
+
+The tools appear under the `sendpage` namespace — `mcp__sendpage__publish_document`,
+`mcp__sendpage__export_document` (png/pdf/docx), and the rest. Prefer to wire the raw
+endpoint yourself? It's `https://sendpageapp.com/mcp` (Streamable HTTP).

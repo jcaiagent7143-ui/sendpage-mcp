@@ -1,0 +1,32 @@
+# dsh-sendpage: the SendPage MCP endpoint as a DeepSeek Harness bundle.
+#
+# Inserts one row that connects to the hosted SendPage MCP server
+# (https://sendpageapp.com/mcp, Streamable HTTP) through the mcp-client bridge
+# the dsh CLI ships with (@deepseek-ai/dsh-mcp-client). The server's tools are
+# registered on ctx.tools under the `sendpage` namespace:
+#   mcp__sendpage__publish_document
+#   mcp__sendpage__update_document
+#   mcp__sendpage__export_document      (png / pdf / docx)
+#   mcp__sendpage__get_document
+#   mcp__sendpage__list_documents
+#   mcp__sendpage__list_comments
+#   mcp__sendpage__check_document
+#
+# Auth: SendPage uses a bearer API key (free, no signup — get one at
+# https://sendpageapp.com/docs/mcp). Set SENDPAGE_API_KEY in the environment or
+# in $DSH_HOME/.credentials.yaml. Listing tools works anonymously; publishing and
+# exporting need the key. The headers expression attaches it only when the
+# variable is present, so an unset key falls back cleanly instead of sending a
+# bogus header.
+#
+# Override per deployment from a later layer (profile cordis.patch.yml or
+# --patch) by referencing this row's id WITHOUT `insert`.
+- insert:
+    - id: mcp-sendpage
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: sendpage
+        transport: streamable-http
+        url: https://sendpageapp.com/mcp
+        headers: !!js 'process.env.SENDPAGE_API_KEY ? { Authorization: "Bearer " + process.env.SENDPAGE_API_KEY } : {}'
+        toolCallTimeoutMs: 180000
